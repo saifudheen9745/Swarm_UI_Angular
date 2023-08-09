@@ -17,3 +17,11 @@ export interface loginResponseData {
     name:string,
     email:string
 }
+
+export interface loginResponsePostConfirmation {
+  accessToken: string;
+  userId: string;
+  name: string;
+  email: string;
+  verified:boolean;
+}
