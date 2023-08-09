@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   loginResponseData,
   userRegisterDetals,
@@ -6,6 +6,7 @@ import {
 import { FirebaseService } from 'src/app/shared/services/firebase/firebase.service';
 import { SignupPageService } from './signup-page.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
+import { Subscription } from 'rxjs';
 
 const spaceRegex = /\s/;
 const numberRegex = /\d/;
@@ -18,7 +19,7 @@ const mobileRegex = /^\d{10}$/;
   templateUrl: './signup-page.component.html',
   styleUrls: ['./signup-page.component.css'],
 })
-export class SignupPageComponent {
+export class SignupPageComponent implements OnDestroy{
   SignUpDetails: userRegisterDetals = {
     fname: null,
     email: null,
@@ -35,11 +36,20 @@ export class SignupPageComponent {
     cnfpassword: null,
   };
 
+  signUpWithGoogleSubscription:Subscription
+  signUpWithFormSubscription:Subscription
+
+
   constructor(
     private googlAuth: FirebaseService,
     private signupService: SignupPageService,
     private toasts: ToastService
   ) {}
+
+  ngOnDestroy(): void {
+      this.signUpWithGoogleSubscription.unsubscribe()
+      this.signUpWithFormSubscription.unsubscribe()
+  }
 
   validateFullName = (): void => {
     if (this.SignUpDetails.fname != null) {
