@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { LoginPageService } from './login-page.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { FirebaseService } from 'src/app/shared/services/firebase/firebase.service';
 import { loginResponseData } from 'src/app/config/config.types';
+import { Observable, Subscription } from 'rxjs';
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -11,16 +12,27 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnDestroy {
   email: string = '';
   password: string = '';
   emailError: string = '';
   passwordError: string = '';
+
+  loginFormSubmitSubscription:Subscription
+  handleGoogleLoginSubscription:Subscription
+
   constructor(
     private loginService: LoginPageService,
     private toasts: ToastService,
     private googleAuth: FirebaseService
-  ) {}
+  ) {
+
+  }
+
+  ngOnDestroy(): void {
+    this.loginFormSubmitSubscription.unsubscribe()
+    this.handleGoogleLoginSubscription.unsubscribe()
+  }
 
   validateEmail = () => {
     const isValid = emailRegex.test(this.email);
@@ -46,14 +58,16 @@ export class LoginPageComponent {
       this.email.length > 0 &&
       this.password.length > 0
     ) {
-      this.loginService.doLogin(this.email, this.password).subscribe(
-        (data: loginResponseData) => {
-          console.log(data);
-        },
-        (error: any) => {
-          this.toasts.customErrorToast(error.error.error.error.msg);
-        }
-      );
+      this.loginFormSubmitSubscription = this.loginService
+        .doLogin(this.email, this.password)
+        .subscribe(
+          (data: loginResponseData) => {
+            console.log(data);
+          },
+          (error: any) => {
+            this.toasts.customErrorToast(error.error.error.error.msg);
+          }
+        );
     } else {
       this.toasts.customErrorToast('All fileds must be provided');
     }
@@ -65,7 +79,7 @@ export class LoginPageComponent {
       const { email } = googleData?.user;
 
       //Calling the method in service to log in using the datas from google
-      this.loginService.doGoogleLogin(email as string).subscribe(
+      this.handleGoogleLoginSubscription = this.loginService.doGoogleLogin(email as string).subscribe(
         (data: loginResponseData): void => {
           console.log(data);
         },
