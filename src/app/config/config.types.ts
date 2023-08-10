@@ -25,3 +25,4 @@ export interface loginResponsePostConfirmation {
   email: string;
   verified:boolean;
 }
+

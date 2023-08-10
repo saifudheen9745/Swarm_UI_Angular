@@ -10,7 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.reducers';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ],
   imports: [
     FormsModule,
     HttpClientModule,

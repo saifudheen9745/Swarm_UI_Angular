@@ -29,6 +29,13 @@ const routes: Routes = [
       import('./pages/verify-email/verify-email.module').then(
         (m) => m.VerifyEmailModule
       ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home-page/home-page.module').then(
+        (m) => m.HomePageModule
+      ),
   }
 ];
 
