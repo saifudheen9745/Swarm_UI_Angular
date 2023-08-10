@@ -7,6 +7,9 @@ import { FirebaseService } from 'src/app/shared/services/firebase/firebase.servi
 import { SignupPageService } from './signup-page.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { Subscription } from 'rxjs';
+import {Store} from '@ngrx/store'
+import { setUserDetails } from 'src/app/shared/ngrx/ngrx.actions';
+import { Router } from '@angular/router';
 
 const spaceRegex = /\s/;
 const numberRegex = /\d/;
@@ -43,7 +46,9 @@ export class SignupPageComponent implements OnDestroy{
   constructor(
     private googlAuth: FirebaseService,
     private signupService: SignupPageService,
-    private toasts: ToastService
+    private toasts: ToastService,
+    private store:Store,
+    private router:Router
   ) {}
 
   ngOnDestroy(): void {
@@ -131,7 +136,15 @@ export class SignupPageComponent implements OnDestroy{
         .subscribe(
           (data: loginResponseData) => {
             //After getting the datas from backend after google register
-            console.log(data);
+            this.store.dispatch(
+              setUserDetails({
+                userId: data.userId,
+                name: data.name,
+                email: data.email,
+                accessToken: data.accessToken,
+              })
+            );
+            this.router.navigate(['/home'])
           },
           (error: any) => {
             this.toasts.customErrorToast(error.error.error.error.msg);
@@ -155,7 +168,7 @@ export class SignupPageComponent implements OnDestroy{
       this.signupService.doRegister(this.SignUpDetails).subscribe(
         (data) => {
           //After getting datas from backend after manual registration
-          console.log(data);
+          this.toasts.verifyEmailToast()
         },
         (error:any) => {
           this.toasts.customErrorToast(error.error.error.error.msg);
