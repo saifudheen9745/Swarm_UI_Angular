@@ -1,0 +1,151 @@
+<div
+  class="h-screen flex justify-center items-center bg-gradient-to-r from-green-300 to-blue-400"
+>
+  <div
+    class="drop-shadow-2xl lg:flex bg-gradient-to-r w-full lg:w-4/5 shadow-lg  lg:h-4/5 lg:rounded-2xl from-green-300 to-blue-400"
+  >
+    <div class="flex flex-col lg:w-2/5 mx-4 justify-center">
+      <div class="flex p-4 justify-center items-center ">
+        <img
+          class="lg:w-1/5 w-1/5 mb-6"
+          src="../../../assets//images//logo.png"
+          alt="LOGO"
+        />
+        <p class="text-5xl ml-2 font-bold text-green-900 drop-shadow-lg">
+          SWARM
+        </p>
+      </div>
+      <div class="flex justify-center lg:mb-32 lg:ml-16">
+        <p class="font-bold text-xl">
+          Join the hive mind of productivity. <br />
+          Swarm in and get things done
+        </p>
+      </div>
+    </div>
+    <div class="lg:mx-16 lg:w-3/5 p-5">
+      <div class=" flex justify-center p-4 lg:mt-2">
+        <p class="font-bold text-xl lg:text-4xl text-indigo-900">
+          Register to explore the world
+        </p>
+      </div>
+      <div class="flex flex-col justify-center">
+        <div class="text-center">
+          <button
+            (click)="signUpWithgoogle()"
+            type="button"
+            class="text-white w-auto bg-[#4285F4] hover:bg-[#4285F4]/90  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+          >
+            <svg
+              class="w-auto h-4 mr-2 -ml-1"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="google"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 488 512"
+            >
+              <path
+                fill="currentColor"
+                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+              ></path>
+            </svg>
+            Sign in with Google
+          </button>
+        </div>
+        <div class="flex">
+          <hr class="w-full dark:bg-black mt-3 mr-2" />
+          <p class="text-gray-600">OR</p>
+          <hr class="w-full text-blue-50  mt-3 ml-2" />
+        </div>
+      </div>
+
+      <form (ngSubmit)="submitSignupForm()">
+        <div class="mt-5">
+          <input
+            (keyup)="validateFullName()"
+            name="fname"
+            [(ngModel)]="SignUpDetails.fname"
+            value=""
+            type="text"
+            placeholder="Full Name"
+            class="rounded-lg p-2  w-full "
+          /><br />
+          <p class="text-red-600">{{SignupErrorDetails.fname}}</p>
+        </div>
+
+        <div class="mt-5 ">
+          <div>
+            <input
+              (keyup)="validateEmail()"
+              name="email"
+              [(ngModel)]="SignUpDetails.email"
+              value=""
+              type="text"
+              placeholder="Email"
+              class="rounded-lg p-2  w-full "
+            /><br />
+            <p class="text-red-600">{{SignupErrorDetails.email}}</p>
+          </div>
+          <div>
+            <input
+            (keyup)="validateMobile()"
+              name="mobile"
+              [(ngModel)]="SignUpDetails.mobile"
+              value=""
+              type="text"
+              placeholder="Mobile"
+              class="mt-5 rounded-lg p-2  w-full"
+            />
+            <p class="text-red-600">{{SignupErrorDetails.mobile}}</p>
+          </div>
+        </div>
+        <div class="mt-5 ">
+          <div>
+            <input
+            (keyup)="validatePassword()"
+              name="password"
+              [(ngModel)]="SignUpDetails.password"
+              value=""
+              type="text"
+              placeholder="Password"
+              class="rounded-lg p-2  w-full "
+            /><br />
+            <p class="text-red-600">{{SignupErrorDetails.password}}</p>
+          </div>
+          <div>
+            <input
+              (keyup)="validateConfirmPassword()"
+              name="cnfpassword"
+              [(ngModel)]="SignUpDetails.cnfpassword"
+              value=""
+              type="text"
+              placeholder="Confirm Password"
+              class="mt-5 rounded-lg p-2  w-full"
+            />
+            <p class="text-red-600">{{SignupErrorDetails.cnfpassword}}</p>
+          </div>
+        </div>
+        <div class="mt-5 flex justify-center">
+          <button
+            type="submit"
+            class="text-white lg:w-2/6 bg-gradient-to-br to-green-800 from-blue-600 hover:bg-gradient-to-bl  shadow-lg  font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+          >
+            <span class="text-xl">Sign Up</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="mt-2">
+        <p class="text-blue-900 text-right text-lg">
+          Already have an account?<a
+            class="text-white underline ml-4 hover:text-green-900 hover:cursor-pointer"
+            routerLink="/login"
+            >Login</a
+          >
+        </p>
+        
+      </div>
+    </div>
+  </div>
+</div>
