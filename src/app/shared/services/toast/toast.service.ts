@@ -18,5 +18,9 @@ export class ToastService {
       timeOut: 1000,
     });
   };
+
+  verifyEmailToast = ()=>{
+    this.toastr.info('Please veify by clicking the link sent to your mail','Email Verification',{timeOut:3000})
+  }
   
 }
