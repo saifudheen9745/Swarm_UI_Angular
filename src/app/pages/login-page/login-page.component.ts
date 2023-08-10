@@ -6,6 +6,7 @@ import { loginResponseData } from 'src/app/config/config.types';
 import { Subscription } from 'rxjs';
 import {Store} from '@ngrx/store'
 import { setUserDetails } from 'src/app/shared/ngrx/ngrx.actions';
+import { Router } from '@angular/router';
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -27,7 +28,8 @@ export class LoginPageComponent implements OnDestroy {
     private loginService: LoginPageService,
     private toasts: ToastService,
     private googleAuth: FirebaseService,
-    private store: Store
+    private store: Store,
+    private router:Router
   ) {
 
   }
@@ -75,6 +77,7 @@ export class LoginPageComponent implements OnDestroy {
             email:data.email,
             accessToken:data.accessToken
           }))
+          this.router.navigate(['/home'])
           },
           (error: any) => {
             this.toasts.customErrorToast(error.error.error.error.msg);
@@ -99,6 +102,7 @@ export class LoginPageComponent implements OnDestroy {
             email:data.email,
             accessToken:data.accessToken
           }))
+           this.router.navigate(['/home']);
         },
         (error: any) => {
           this.toasts.customErrorToast(error?.error?.error.error.msg);
