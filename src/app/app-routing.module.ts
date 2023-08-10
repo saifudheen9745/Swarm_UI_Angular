@@ -29,7 +29,7 @@ const routes: Routes = [
       import('./pages/verify-email/verify-email.module').then(
         (m) => m.VerifyEmailModule
       ),
-  },
+  }
 ];
 
 @NgModule({
