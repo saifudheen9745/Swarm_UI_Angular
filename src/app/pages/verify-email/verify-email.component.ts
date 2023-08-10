@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { VerifyEmailService } from './verify-email.service';
 import { loginResponsePostConfirmation } from 'src/app/config/config.types';
 import { Subscription } from 'rxjs';
+import {Store} from '@ngrx/store'
+import { setUserDetails } from 'src/app/shared/ngrx/ngrx.actions';
 
 @Component({
   selector: 'app-verify-email',
@@ -18,7 +20,8 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private verifyEmailService: VerifyEmailService,
-    private router: Router
+    private router: Router,
+    private store:Store
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +35,13 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
         .subscribe(
           (data: loginResponsePostConfirmation) => {
             if (data.verified) {
-              this.router.navigate(['']);
+              this.store.dispatch(setUserDetails({
+                userId:data.userId,
+                name:data.name,
+                email:data.email,
+                accessToken:data.accessToken
+              }))
+              this.router.navigate(['/home']);
             }
           },
           (error: any) => {
@@ -42,7 +51,9 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
             } else {
               this.deleteUserSubscription = this.verifyEmailService
                 .deleteAUser(id as string)
-                .subscribe((data) => {});
+                .subscribe((data) => {
+                  
+                });
             }
           }
         );
@@ -50,8 +61,14 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if(this.confirmVerifyLinkSubscription){
       this.confirmVerifyLinkSubscription.unsubscribe()
+    }
+    if(this.deleteUserSubscription){
       this.deleteUserSubscription.unsubscribe()
+    }
+    if(this.activatedRouteSubscription){
       this.activatedRouteSubscription.unsubscribe()
+    }
   }
 }
