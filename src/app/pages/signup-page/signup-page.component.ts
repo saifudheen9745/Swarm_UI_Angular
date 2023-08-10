@@ -52,8 +52,12 @@ export class SignupPageComponent implements OnDestroy{
   ) {}
 
   ngOnDestroy(): void {
-      this.signUpWithGoogleSubscription.unsubscribe()
+    if(this.signUpWithFormSubscription){
       this.signUpWithFormSubscription.unsubscribe()
+    }
+    if(this.signUpWithGoogleSubscription){
+      this.signUpWithGoogleSubscription.unsubscribe()
+    }
   }
 
   validateFullName = (): void => {
