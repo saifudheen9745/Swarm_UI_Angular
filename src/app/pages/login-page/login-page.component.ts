@@ -3,7 +3,9 @@ import { LoginPageService } from './login-page.service';
 import { ToastService } from 'src/app/shared/services/toast/toast.service';
 import { FirebaseService } from 'src/app/shared/services/firebase/firebase.service';
 import { loginResponseData } from 'src/app/config/config.types';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import {Store} from '@ngrx/store'
+import { setUserDetails } from 'src/app/shared/ngrx/ngrx.actions';
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -24,14 +26,19 @@ export class LoginPageComponent implements OnDestroy {
   constructor(
     private loginService: LoginPageService,
     private toasts: ToastService,
-    private googleAuth: FirebaseService
+    private googleAuth: FirebaseService,
+    private store: Store
   ) {
 
   }
 
   ngOnDestroy(): void {
-    this.loginFormSubmitSubscription.unsubscribe()
-    this.handleGoogleLoginSubscription.unsubscribe()
+    if(this.loginFormSubmitSubscription){
+      this.loginFormSubmitSubscription.unsubscribe()
+    }
+    if(this.handleGoogleLoginSubscription){
+      this.handleGoogleLoginSubscription.unsubscribe()
+    }
   }
 
   validateEmail = () => {
@@ -62,7 +69,12 @@ export class LoginPageComponent implements OnDestroy {
         .doLogin(this.email, this.password)
         .subscribe(
           (data: loginResponseData) => {
-            console.log(data);
+            this.store.dispatch(setUserDetails({
+            userId:data.userId,
+            name:data.name,
+            email:data.email,
+            accessToken:data.accessToken
+          }))
           },
           (error: any) => {
             this.toasts.customErrorToast(error.error.error.error.msg);
@@ -81,7 +93,12 @@ export class LoginPageComponent implements OnDestroy {
       //Calling the method in service to log in using the datas from google
       this.handleGoogleLoginSubscription = this.loginService.doGoogleLogin(email as string).subscribe(
         (data: loginResponseData): void => {
-          console.log(data);
+          this.store.dispatch(setUserDetails({
+            userId:data.userId,
+            name:data.name,
+            email:data.email,
+            accessToken:data.accessToken
+          }))
         },
         (error: any) => {
           this.toasts.customErrorToast(error?.error?.error.error.msg);
