@@ -3,6 +3,11 @@ import { setUserDetails, resetUserDetails } from './ngrx.actions';
 import { userDetailsState } from './ngrx.states';
 import { loginResponseData } from 'src/app/config/config.types';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import {createSelector} from '@ngrx/store'
+
+interface AppState{
+  userDetailsState:loginResponseData
+}
 
 const _userDetailsReducer = createReducer(
   userDetailsState,
@@ -48,3 +53,5 @@ export function userDetailsReducer(
 ): loginResponseData {
   return localStorageSyncReducer(_userDetailsReducer)(state, action);
 }
+
+export const userDetailsSelector = (state:AppState) => state.userDetailsState
