@@ -16,6 +16,20 @@ const routes: Routes = [
         (m) => m.LoginPageModule
       ),
   },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./pages/signup-page/signup-page.module').then(
+        (m) => m.SignupPageModule
+      ),
+  },
+  {
+    path: 'verifyMail/:id/:token',
+    loadChildren: () =>
+      import('./pages/verify-email/verify-email.module').then(
+        (m) => m.VerifyEmailModule
+      ),
+  },
 ];
 
 @NgModule({
