@@ -9,8 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.reducers';
 
+
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -28,8 +29,11 @@ import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.
         metaReducers: [localStorageSyncReducer],
       }
     ),
+    
   ],
-  providers: [],
+  providers: [
+   
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
