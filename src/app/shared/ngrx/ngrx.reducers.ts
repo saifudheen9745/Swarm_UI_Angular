@@ -5,7 +5,7 @@ import { loginResponseData } from 'src/app/config/config.types';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import {createSelector} from '@ngrx/store'
 
-interface AppState{
+export interface AppState{
   userDetailsState:loginResponseData
 }
 
@@ -16,10 +16,10 @@ const _userDetailsReducer = createReducer(
     // Update the state properties with values from the action's payload
     return {
       ...state,
-      userId: action.userId,
-      name: action.name,
-      email: action.email,
-      accessToken: action.accessToken,
+      userId: action.userId === '' ? state.userId : action.userId,
+      name: action.name === '' ? state.name : action.name,
+      email: action.email === '' ? state.email : action.email,
+      accessToken: action.accessToken === '' ? state.accessToken :action.accessToken
     };
   }),
 
