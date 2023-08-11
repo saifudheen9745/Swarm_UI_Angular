@@ -10,8 +10,9 @@ import { StoreModule } from '@ngrx/store';
 import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.reducers';
 import { InterceptorService } from './shared/services/interceptor/interceptor.service';
 
+
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -29,10 +30,13 @@ import { InterceptorService } from './shared/services/interceptor/interceptor.se
         metaReducers: [localStorageSyncReducer],
       }
     ),
+    
   ],
+  
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass:InterceptorService,multi:true}
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
