@@ -5,9 +5,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.reducers';
+import { InterceptorService } from './shared/services/interceptor/interceptor.service';
 
 
 @NgModule({
@@ -31,9 +32,11 @@ import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.
     ),
     
   ],
+  
   providers: [
-   
+    {provide:HTTP_INTERCEPTORS, useClass:InterceptorService,multi:true}
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

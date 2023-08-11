@@ -14,7 +14,6 @@ import { catchError, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import { environment } from 'src/environment/environment';
 import { loginResponseData } from 'src/app/config/config.types';
 import { setUserDetails } from '../../ngrx/ngrx.actions';
-import { userDetailsState } from '../../ngrx/ngrx.states';
 
 const excludedUrl: string[] = [
   '',
@@ -36,7 +35,7 @@ export class InterceptorService implements HttpInterceptor {
   constructor(private store: Store, private http: HttpClient) {
     this.store
       .select((state: any) => state?.userDetailsState)
-      .subscribe((data: loginResponseData) => {
+      .subscribe((data: any) => {
         console.log(data);
         this.accessToken = data.accessToken;
       });
@@ -46,6 +45,8 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
+    
     // Intercept the request before it is sent
     let modifiedReq: HttpRequest<any> = req;
     const url = req.url.split(environment.baseUrl)[1];
@@ -57,7 +58,7 @@ export class InterceptorService implements HttpInterceptor {
         },
       });
     }
-
+    
     return next.handle(modifiedReq).pipe(
       tap(
         (event) => {
