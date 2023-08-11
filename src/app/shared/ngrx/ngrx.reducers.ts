@@ -3,7 +3,6 @@ import { setUserDetails, resetUserDetails } from './ngrx.actions';
 import { userDetailsState } from './ngrx.states';
 import { loginResponseData } from 'src/app/config/config.types';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import {createSelector} from '@ngrx/store'
 
 export interface AppState{
   userDetailsState:loginResponseData
@@ -15,7 +14,6 @@ const _userDetailsReducer = createReducer(
   on(setUserDetails, (state, action) => {
     // Update the state properties with values from the action's payload
     return {
-      ...state,
       userId: action.userId === '' ? state.userId : action.userId,
       name: action.name === '' ? state.name : action.name,
       email: action.email === '' ? state.email : action.email,
@@ -27,7 +25,6 @@ const _userDetailsReducer = createReducer(
   on(resetUserDetails, (state) => {
     // Reset the userDetails properties to empty strings
     return {
-      ...state,
       userId: '',
       name: '',
       email: '',
