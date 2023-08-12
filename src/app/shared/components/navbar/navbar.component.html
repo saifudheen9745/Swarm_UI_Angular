@@ -1,7 +1,7 @@
 <div>
     <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full z-20 top-0 left-0 border-gray-200 dark:border-gray-600">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
-         <p class="flex items-center">
+         <a class="flex items-center" routerLink="/home">
         <img
           src="../../../../assets//images/logo.png"
           class="h-6 mr-3 sm:h-9"
@@ -12,7 +12,8 @@
         >
           Swarm
         </span>
-      </p>
+
+      </a>
         <div class="flex md:order-2 gap-4">
           <div class="dark:bg-gray-700 bg-gray-300 hover:bg-slate-400 hover:dark:bg-slate-200 rounded-lg mt-0.5 hover:cursor-pointer h-9 w-9 flex justify-center items-center"
             (click)="handleToggleClick()">
