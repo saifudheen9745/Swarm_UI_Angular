@@ -26,3 +26,9 @@ export interface loginResponsePostConfirmation {
   verified:boolean;
 }
 
+export interface userAccountDetails {
+  fname:string,
+  email:string,
+  mobile?:string,
+  userId:string
+}
