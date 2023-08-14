@@ -5,12 +5,14 @@ import { AsideNavbarComponent } from './aside-navbar/aside-navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponentComponent } from './home-component/home-component.component';
+import { HomeCardComponent } from './home-card/home-card.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent, AsideNavbarComponent, UserAccountComponent],
+  declarations: [NavbarComponent, AsideNavbarComponent, UserAccountComponent, HomeComponentComponent, HomeCardComponent],
   imports: [CommonModule, FontAwesomeModule,FormsModule],
-  exports: [NavbarComponent, AsideNavbarComponent, UserAccountComponent],
+  exports: [NavbarComponent, AsideNavbarComponent, UserAccountComponent, HomeComponentComponent, HomeCardComponent],
 })
 export class SharedComponentsModule {}
