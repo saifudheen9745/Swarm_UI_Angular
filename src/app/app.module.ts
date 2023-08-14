@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.reducers';
 import { InterceptorService } from './shared/services/interceptor/interceptor.service';
+import { NgxColorsModule } from 'ngx-colors';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { InterceptorService } from './shared/services/interceptor/interceptor.se
         metaReducers: [localStorageSyncReducer],
       }
     ),
-    
+    NgxColorsModule
   ],
   
   providers: [
