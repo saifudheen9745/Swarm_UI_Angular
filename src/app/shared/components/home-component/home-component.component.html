@@ -1,0 +1,40 @@
+<div class="dark:bg-slate-800 bg-slate-00  h-screen overflow-scroll p-5 bg-gray-200 ">
+            <div class="text-blue-900  dark:text-white">
+                <h1 class="text-center md:text-2xl text-lg  font-semibold ">
+                    {{greeting}}
+                </h1>
+                <h1 class="text-center md:text-3xl  text-xl  mt-2 font-semibold">
+                    {{formattedDate}}
+                </h1>
+            </div>
+            <div class="text-center mt-6">
+                <h3 class = "text-lg md:text-3xl font-bold mb-2 dark:text-slate-400 text-gray-700">
+                  Boost Your Project Management
+                </h3>
+                <p class= "text-sm md:text-lg  mb-8 text-gray-500  ">
+                  Swarm provides a comprehensive set of tools and features to
+                  streamline your project management process.
+                </p>
+              </div>
+            <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  md:mb-0 mb-[7rem] mt-10">
+                <div class=" text-center">
+                    <h1 class="md:text-3xl text-2xl font-bold dark:text-slate-100 text-slate-900 ">Welcome to</h1>
+                    <h2 class="md:text-4xl text-4xl font-extrabold text-orange-500 ">SWARM</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 ">
+                        <app-home-card 
+                        heading="Workspace Management" 
+                        content="  Efficiently track and manage workspaces, assign responsibilities, and
+                        monitor progress.">
+                        </app-home-card>
+                        <app-home-card
+                        heading="Project Analytics" 
+                        content="  Gain valuable insights into your projects performance and make data-driven decisions.">
+                        </app-home-card>
+                        <app-home-card
+                        heading="Project Discussions"
+                        content="Foster seamless collaboration among team members, with real-time
+                        communication and file sharing."></app-home-card>
+                    </div>
+                </div>
+            </div>
+        </div>
