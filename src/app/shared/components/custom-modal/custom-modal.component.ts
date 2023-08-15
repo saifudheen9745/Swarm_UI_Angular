@@ -6,10 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./custom-modal.component.css'],
 })
 export class CustomModalComponent {
+  
   showModal: boolean;
-  @Input() modalName:string
-
+  @Input() modalName: string;
+  
   toggleModal(): void {
     this.showModal = !this.showModal;
+  }
+
+  submit(){
+
   }
 }
