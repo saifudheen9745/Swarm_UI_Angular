@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class CustomModalComponent {
   
   showModal: boolean;
+  
   @Input() modalName: string;
   
   toggleModal(): void {

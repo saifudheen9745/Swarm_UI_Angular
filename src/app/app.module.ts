@@ -7,10 +7,14 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { localStorageSyncReducer, userDetailsReducer } from './shared/ngrx/ngrx.reducers';
+import {
+  localStorageSyncReducer,
+  userDetailsReducer,
+} from './shared/ngrx/ngrx.reducers';
 import { InterceptorService } from './shared/services/interceptor/interceptor.service';
 import { NgxColorsModule } from 'ngx-colors';
-
+import { MainPageComponent } from './pages/main-page/main-page.component';
+import { SharedComponentsModule } from './shared/components/shared-components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,11 +35,10 @@ import { NgxColorsModule } from 'ngx-colors';
         metaReducers: [localStorageSyncReducer],
       }
     ),
-    NgxColorsModule
+    NgxColorsModule,
   ],
-  
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:InterceptorService,multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
   ],
 
   bootstrap: [AppComponent],

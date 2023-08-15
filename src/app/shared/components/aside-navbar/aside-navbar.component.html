@@ -1,6 +1,6 @@
 <section class="md:flex gap-6 hidden">
   <div
-    class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white duration-300 min-h-screen pt-4"
+    class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white duration-300 min-h-screen"
     [ngClass]="{'w-64': open, 'w-16': !open}"
   >
     <div class="p-3 flex justify-end">
@@ -14,13 +14,12 @@
     <div class="mt-4 flex flex-col gap-4 relative">
       <ng-container *ngFor="let menu of menus; let i = index">
         <a
-          routerLink="menu.link"
+          routerLinkActive="active"
+          [routerLink]="menu.link"
           class="group flex items-center text-sm gap-3.5 font-medium p-5 hover:bg-gray-300 hover:dark:bg-gray-500 rounded-md"
           [class.mt-5]="menu.margin"
         >
-          <div>
-            <fa-icon [icon]="menu.icon"></fa-icon>
-          </div>
+          <img class="w-8" [src]="menu.icon" alt="">
           <h2
             [ngStyle]="{
               transitionDelay: open ? '0ms' : (i * 100) + 'ms',
@@ -48,9 +47,8 @@
         class="hover:text-red-900 group flex items-center text-sm hover:cursor-pointer gap-3.5 font-medium p-5 hover:bg-gray-300 hover:dark:bg-gray-500 rounded-md"
         style="overflow: hidden;"
       >
-        <div>
-          <i class="text-3xl">&#11144;</i>
-        </div>
+        
+        <img class="w-8" src="../../../../assets/images/logout.png" alt="">
         <h2
           [ngStyle]="{
             transitionDelay: open ? '0ms' : (menus.length * 100) + 'ms',

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'swarm',
     loadChildren: () =>
       import('./pages/landing-page/landing-page.module').then(
         (m) => m.LandingPageModule
@@ -31,16 +31,16 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
-      import('./pages/home-page/home-page.module').then(
-        (m) => m.HomePageModule
+      import('./pages/main-page/main-page.module').then(
+        (m) => m.MainPageModule
       ),
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
