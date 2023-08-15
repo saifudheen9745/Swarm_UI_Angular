@@ -1,7 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 
 export const setUserDetails = createAction(
-  'setUserDetails',
+  
+  '[userDetails] setUserDetails',
   props<{ userId: string; name: string; email: string; accessToken: string }>()
 );
-export const resetUserDetails = createAction('resetUserDetails')
+export const resetUserDetails = createAction('[userDetails] resetUserDetails')

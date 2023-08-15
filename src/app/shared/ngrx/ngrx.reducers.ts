@@ -10,7 +10,6 @@ export interface AppState{
 
 const _userDetailsReducer = createReducer(
   userDetailsState,
-
   on(setUserDetails, (state, action) => {
     // Update the state properties with values from the action's payload
     return {
