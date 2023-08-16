@@ -33,6 +33,13 @@ const routes: Routes = [
             (m) => m.WpFormModule
           ),
       },
+      {
+        path: 'workspaceInvitation/:workspaceId/:encEmail/:decision',
+        loadChildren: () =>
+          import(
+            '../../shared/components/verify-workspace-invitation/verify-workspace-invitation.module'
+          ).then((m) => m.VerifyWorkspaceInvitationModule),
+      },
     ],
   },
 ];

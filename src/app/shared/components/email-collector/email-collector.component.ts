@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -8,6 +8,9 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   styleUrls: ['./email-collector.component.css'],
 })
 export class EmailCollectorComponent {
+
+  @Output() EmitSelectedEmails:EventEmitter<string[]> = new EventEmitter();
+
   emails: string[] = [];
   email: string = '';
   emailError: string = '';
@@ -40,6 +43,7 @@ export class EmailCollectorComponent {
   };
 
   submit(){
-    
+    this.EmitSelectedEmails.emit(this.emails)
+    this.emails = []
   }
 }
