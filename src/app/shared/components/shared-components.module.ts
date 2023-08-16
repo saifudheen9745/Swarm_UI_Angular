@@ -10,13 +10,14 @@ import { CustomModalComponent } from './custom-modal/custom-modal.component';
 import { EmailCollectorComponent } from './email-collector/email-collector.component';
 import { CreateWorkspaceComponent } from './create-workspace/create-workspace.component';
 import { RouterModule } from '@angular/router';
+import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
 
 
 
 
 @NgModule({
-  declarations: [NavbarComponent, AsideNavbarComponent, HomeCardComponent, CustomModalComponent,EmailCollectorComponent, CreateWorkspaceComponent],
+  declarations: [NavbarComponent, AsideNavbarComponent, HomeCardComponent, CustomModalComponent,EmailCollectorComponent, CreateWorkspaceComponent, MobileNavComponent],
   imports: [CommonModule, FontAwesomeModule,FormsModule,NgxColorsModule,RouterModule],
-  exports: [NavbarComponent, AsideNavbarComponent, HomeCardComponent,CustomModalComponent,EmailCollectorComponent,CreateWorkspaceComponent,NgxColorsModule]
+  exports: [NavbarComponent, AsideNavbarComponent, HomeCardComponent,CustomModalComponent,EmailCollectorComponent,CreateWorkspaceComponent,NgxColorsModule,MobileNavComponent]
 })
 export class SharedComponentsModule {}
