@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GreetingService } from '../../services/greeting/greeting.service';
 import { Store } from '@ngrx/store';
-import { selectUserDetails } from '../../ngrx/ngrx.selectors';
-import { AppState } from '../../ngrx/ngrx.reducers';
-import { loginResponseData } from 'src/app/config/config.types';
 import { Subscription } from 'rxjs';
 
 @Component({
