@@ -1,0 +1,13 @@
+<div class="h-screen w-full">
+  <app-select-workspace
+    *ngIf="!workspaceService.getWorkspaceClickedValue(); else workspaceDetails"
+    (emitSelectedWsId)="getSelectedWorkspace($event)"
+    [workspaces]="workspaces"
+  ></app-select-workspace>
+  <ng-template #workspaceDetails>
+    <app-workspace-details
+      [workspaceDetails]="selectedWorkspace"
+      [projectDetails]="selectedWorkspaceProjects"
+    ></app-workspace-details>
+  </ng-template>
+</div>

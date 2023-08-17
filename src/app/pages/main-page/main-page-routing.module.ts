@@ -40,6 +40,13 @@ const routes: Routes = [
             '../../shared/components/verify-workspace-invitation/verify-workspace-invitation.module'
           ).then((m) => m.VerifyWorkspaceInvitationModule),
       },
+      {
+        path: 'workspace',
+        loadChildren: () =>
+          import('../../shared/components/workspace/workspace.module').then(
+            (m) => m.WorkspaceModule
+          ),
+      },
     ],
   },
 ];

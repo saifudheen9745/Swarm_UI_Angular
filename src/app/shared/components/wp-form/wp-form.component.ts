@@ -173,7 +173,7 @@ export class WpFormComponent implements OnInit, OnDestroy {
       .subscribe(
         (data) => {
           this.toast.customSuccessToast('Project creation successfull')
-          this.router.navigate(['/workspaces'])
+          this.router.navigate(['/workspace'])
         },
         (error) => {
           console.log(error);
