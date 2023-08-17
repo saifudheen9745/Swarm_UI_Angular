@@ -1,0 +1,86 @@
+<div
+  class="border-3 p-2 md:p-20 pt-10 w-full h-full dark:border-gray-100 border-gray-900"
+>
+  <p class="text-3xl text-center dark:text-gray-200 mb-4">
+    Choose your
+    <span class="text-orange-500 text-4xl font-bold">workspace</span>
+  </p>
+  <div class="border-b w-full border-2 border-gray-500 dark:border-gray-300">
+    <ul
+      class="flex justify-evenly w-full flex-wrap -mb-px text-sm font-medium text-center"
+      id="myTab"
+      data-tabs-toggle="#myTabContent"
+      role="tablist"
+    >
+      <li class="mr-2" role="presentation">
+        <button
+          (click)="changeTab('owned')"
+          [ngClass]="
+            selectedTab === 'owned'
+              ? 'border-b-2 dark:border-gray-200 border-gray-950 dark:text-gray-100 text-gray-900'
+              : 'text-gray-400 dark:text-gray-500'
+          "
+          class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+          id="profile-tab"
+          data-tabs-target="#profile"
+          type="button"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="false"
+        >
+          <p class="md:text-2xl">Owned Workspace</p>
+        </button>
+      </li>
+      <li class="mr-2" role="presentation">
+        <button
+          (click)="changeTab('shared')"
+          [ngClass]="
+            selectedTab === 'shared'
+              ? 'border-b-2 dark:border-gray-200 border-gray-950 dark:text-gray-100 text-gray-900'
+              : 'text-gray-400 dark:text-gray-500'
+          "
+          class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+          id="dashboard-tab"
+          data-tabs-target="#dashboard"
+          type="button"
+          role="tab"
+          aria-controls="dashboard"
+          aria-selected="false"
+        >
+          <p class="md:text-2xl">Shared Workspace</p>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div id="myTabContent" class="h-[50%]">
+    <div
+      *ngIf="selectedTab === 'owned'"
+      class="p-4 overflow-y-scroll border-2 dark:border-gray-300 border-gray-600 h-full bg-gray-50 dark:bg-gray-800"
+      id="profile"
+      role="tabpanel"
+      aria-labelledby="profile-tab"
+    >
+      <div *ngIf="workspaces">
+        <app-workspace-listing
+          (emitWsId)="selectWorkspace($event)"
+          [workspace]="workspaces.ownedWorkspaces"
+        ></app-workspace-listing>
+      </div>
+    </div>
+
+    <div
+      *ngIf="selectedTab === 'shared'"
+      class="p-4 h-full overflow-y-scroll border-2 dark:border-gray-300 border-gray-600 bg-gray-50 dark:bg-gray-800"
+      id="dashboard"
+      role="tabpanel"
+      aria-labelledby="dashboard-tab"
+    >
+      <div *ngIf="workspaces">
+        <app-workspace-listing
+          (emitWsId)="selectWorkspace($event)"
+          [workspace]="workspaces.sharedWorkspaces"
+        ></app-workspace-listing>
+      </div>
+    </div>
+  </div>
+</div>

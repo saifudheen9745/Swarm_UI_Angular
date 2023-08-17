@@ -35,7 +35,9 @@ export interface userAccountDetails {
 
 export interface workspace {
   master: string;
-  members: [];
+  members: [
+    {email:string,status:string}
+  ];
   name: string;
   projects: [];
   theme: string;
@@ -44,8 +46,12 @@ export interface workspace {
 }
 
 export interface workspaces {
-  ownedWorkspaces:[],
-  sharedWorkspaces:[]
+  ownedWorkspaces:[
+    workspace
+  ],
+  sharedWorkspaces:[
+    workspace
+  ]
 }
 
 export interface project {

@@ -15,7 +15,7 @@ export class FormServiceService {
       return null
     }
   }
-
+  
   wpForm():FormGroup{
     return this.form.group({
       workspace: ['', Validators.required],
@@ -30,4 +30,6 @@ export class FormServiceService {
       members: [[]],
     });
   }
+
+  
 }

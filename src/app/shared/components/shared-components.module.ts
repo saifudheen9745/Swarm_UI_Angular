@@ -11,7 +11,6 @@ import { EmailCollectorComponent } from './email-collector/email-collector.compo
 import { CreateWorkspaceComponent } from './create-workspace/create-workspace.component';
 import { RouterModule } from '@angular/router';
 import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
-import { VerifyWorkspaceInvitationComponent } from './verify-workspace-invitation/verify-workspace-invitation.component';
 
 
 
