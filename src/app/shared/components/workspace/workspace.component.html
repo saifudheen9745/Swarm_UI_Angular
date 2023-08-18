@@ -6,6 +6,7 @@
   ></app-select-workspace>
   <ng-template #workspaceDetails>
     <app-workspace-details
+      *ngIf="selectedWorkspaceProjects"
       [workspaceDetails]="selectedWorkspace"
       [projectDetails]="selectedWorkspaceProjects"
     ></app-workspace-details>

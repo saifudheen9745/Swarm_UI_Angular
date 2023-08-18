@@ -1,5 +1,5 @@
 <div class="w-full h-full">
-    <div class="w-full flex gap-2 flex-col md:flex-row items-center md:justify-around h-1/5">
+    <div class="w-full  rounded-lg flex gap-2 shadow-lg flex-col md:flex-row items-center md:justify-around h-1/5">
         <p *ngIf="workspaceDetails" class="dark:text-gray-200 text-gray-800 text-4xl md:text-6xl">
             {{ workspaceDetails.name }}
             <span class="ml-2 text-xl cursor-pointer" (click)="goToWorkspaceSelect()">📝</span>
@@ -19,7 +19,12 @@
             </div>
         </div>
     </div>
-    <div class="w-full  md:flex gap-3 h-3/5 md:h-4/5 overflow-y-scroll p-2 md:p-10">
+    <div class="flex mt-2 justify-center md:justify-end md:mr-20">
+        <app-custom-modal modalName="Add members to workspace" >
+            <app-email-collector (EmitSelectedEmails)="addMembersToWorkspace($event)"></app-email-collector>
+        </app-custom-modal>
+    </div>
+    <div class="w-full  md:flex gap-3 h-3/5 md:h-4/5 overflow-y-scroll scrollbar-thin dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-900 p-2 md:p-10">
         <div class="w-full">
             <app-workspace-data-listing heading="Projects" [projects]="projectDetails"></app-workspace-data-listing>
         </div>
