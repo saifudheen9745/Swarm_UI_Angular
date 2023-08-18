@@ -15,6 +15,7 @@ import { InterceptorService } from './shared/services/interceptor/interceptor.se
 import { NgxColorsModule } from 'ngx-colors';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SharedComponentsModule } from './shared/components/shared-components.module';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,17 @@ import { SharedComponentsModule } from './shared/components/shared-components.mo
       }
     ),
     NgxColorsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 150,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+      
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },

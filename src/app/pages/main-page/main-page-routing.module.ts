@@ -47,6 +47,10 @@ const routes: Routes = [
             (m) => m.WorkspaceModule
           ),
       },
+      {
+        path:'project/:projectId',
+        loadChildren: () => import('../../shared/components/project-task/project-task.module').then(m => m.ProjectTaskModule)
+      }
     ],
   },
 ];
