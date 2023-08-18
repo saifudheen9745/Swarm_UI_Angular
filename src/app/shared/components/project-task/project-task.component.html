@@ -1,0 +1,23 @@
+<div class="h-full w-full md:px-20">
+  <p *ngIf="projectDetails" class="text-5xl mt-6 dark:text-gray-100 text-gray-800 text-center">
+    {{projectDetails.name}}
+  </p>
+  <div
+    class="w-full h-12 flex justify-around md:gap-3 items-center px-3 dark:bg-gray-400 mt-10 rounded-full bg-gray-100"
+  >
+    <p
+      class="text-xl font-bold cursor-pointer text-gray-800 hover:text-gray-950"
+      (click)="handleNavSelect('overview')"
+    >
+      Project Overview
+    </p>
+    <p
+    (click)="handleNavSelect('tasks')"
+      class="text-xl font-bold cursor-pointer text-gray-800 hover:text-gray-950"
+    >
+      Project Tasks
+    </p>
+  </div>
+  <app-project-overview *ngIf="navChoise === 'overview'" [project]="projectDetails"></app-project-overview>
+  <app-tasks *ngIf="navChoise === 'tasks'" [projectId]="projectDetails._id"></app-tasks>
+</div>

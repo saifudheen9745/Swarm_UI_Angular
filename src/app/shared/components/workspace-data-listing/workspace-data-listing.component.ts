@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { project, workspace } from 'src/app/config/config.types';
 
 @Component({
@@ -10,18 +11,11 @@ export class WorkspaceDataListingComponent {
   @Input() heading: string;
   @Input() projects: project[];
   @Input() workspace: workspace;
-  projectSearch:project[]
-  searchKeyword: string = '';
 
-  constructor() {
-   
-    this.projectSearch = this.projects
-    
-  }
+  constructor(private router:Router) {}
 
-  handleSearchKeyup() {
-    if(this.workspace === null){
-      this.projectSearch = this.projects.filter((project)=>project.name.includes(this.searchKeyword))
-    }
+  handleProjectClick(projectId: string) {
+    this.router.navigate([`/project/${projectId}`])
   }
+  
 }

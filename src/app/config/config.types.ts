@@ -55,6 +55,7 @@ export interface workspaces {
 }
 
 export interface project {
+  _id:string
   workspace:string,
   name:string,
   description:string,
@@ -62,4 +63,18 @@ export interface project {
   from:string,
   to:string,
   members:[]
+}
+
+export interface task {
+  name: string
+  priority: string
+  description: string
+  from: string
+  to: string
+  images: []
+  assignee: []
+  reporter: string
+  projectId: string
+  comments: []
+  status: string
 }
