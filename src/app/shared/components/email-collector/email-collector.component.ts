@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ToastService } from '../../services/toast/toast.service';
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -8,16 +9,15 @@ const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   styleUrls: ['./email-collector.component.css'],
 })
 export class EmailCollectorComponent {
-
-  @Output() EmitSelectedEmails:EventEmitter<string[]> = new EventEmitter();
+  @Output() EmitSelectedEmails: EventEmitter<string[]> = new EventEmitter();
 
   emails: string[] = [];
   email: string = '';
   emailError: string = '';
+  constructor(private toast: ToastService) {}
 
-
-  addEmail = () => {
-    console.log(this.email);
+  addEmail = (event:MouseEvent) => {
+    event.preventDefault()
     let isduplicate = this.emails.indexOf(this.email);
     if (isduplicate < 0) {
       this.emails.push(this.email);
@@ -31,8 +31,8 @@ export class EmailCollectorComponent {
     this.emails = this.emails.filter((email) => email !== item);
   }
 
-
-  validateEmail = (): void => {
+  validateEmail = (event: KeyboardEvent): void => {
+    event.preventDefault()
     if (this.email != '') {
       if (emailRegex.test(this.email)) {
         this.emailError = '';
@@ -42,8 +42,13 @@ export class EmailCollectorComponent {
     }
   };
 
-  submit(){
-    this.EmitSelectedEmails.emit(this.emails)
-    this.emails = []
+  submit(event: Event) {
+    event.preventDefault();
+    if (this.emails.length === 0) {
+      this.toast.customErrorToast('Please add an email before you submit');
+      return;
+    }
+    this.EmitSelectedEmails.emit(this.emails);
+    this.emails = [];
   }
 }

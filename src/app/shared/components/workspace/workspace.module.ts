@@ -6,6 +6,8 @@ import { SelectWorkspaceComponent } from '../select-workspace/select-workspace.c
 import { WorkspaceDetailsComponent } from '../workspace-details/workspace-details.component';
 import { WorkspaceListingComponent } from '../workspace-listing/workspace-listing.component';
 import { WorkspaceDataListingComponent } from '../workspace-data-listing/workspace-data-listing.component';
+import { SharedComponentsModule } from '../shared-components.module';
+import { FormsModule } from '@angular/forms';
 
 const route:Routes = [{path:'',component:WorkspaceComponent}]
 
@@ -13,7 +15,9 @@ const route:Routes = [{path:'',component:WorkspaceComponent}]
   declarations: [SelectWorkspaceComponent,WorkspaceComponent,WorkspaceDetailsComponent,WorkspaceListingComponent,WorkspaceDataListingComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(route)
+    RouterModule.forChild(route),
+    SharedComponentsModule,
+    FormsModule
   ]
 })
 export class WorkspaceModule { }

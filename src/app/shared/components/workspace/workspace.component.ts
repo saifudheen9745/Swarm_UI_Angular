@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { WorkspaceService } from './workspace.service';
 import { Subscription } from 'rxjs';
-import { workspace, workspaces } from 'src/app/config/config.types';
+import { project, workspace, workspaces } from 'src/app/config/config.types';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -45,8 +45,9 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
     if (this.getSelectedWorkspaceProjectSubscription) {
       this.getSelectedWorkspaceProjectSubscription.unsubscribe();
     }
-    this.workspaceService.updateWorkspaceClickedReset()
+    this.workspaceService.updateWorkspaceClickedReset();
   }
+
   loadWorkspaces = () => {
     this.getAllWorkspaceSubscription = this.workspaceService
       .getAllWorkspaces(this.userId, this.email)
@@ -83,4 +84,6 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
         }
       );
   };
+
+  
 }
