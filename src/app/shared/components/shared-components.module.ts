@@ -11,13 +11,36 @@ import { EmailCollectorComponent } from './email-collector/email-collector.compo
 import { CreateWorkspaceComponent } from './create-workspace/create-workspace.component';
 import { RouterModule } from '@angular/router';
 import { MobileNavComponent } from './mobile-nav/mobile-nav.component';
-
-
-
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-  declarations: [NavbarComponent, AsideNavbarComponent, HomeCardComponent, CustomModalComponent,EmailCollectorComponent, CreateWorkspaceComponent, MobileNavComponent],
-  imports: [CommonModule, FontAwesomeModule,FormsModule,NgxColorsModule,RouterModule],
-  exports: [NavbarComponent, AsideNavbarComponent, HomeCardComponent,CustomModalComponent,EmailCollectorComponent,CreateWorkspaceComponent,NgxColorsModule,MobileNavComponent]
+  declarations: [
+    NavbarComponent,
+    AsideNavbarComponent,
+    HomeCardComponent,
+    CustomModalComponent,
+    EmailCollectorComponent,
+    CreateWorkspaceComponent,
+    MobileNavComponent,
+    LoaderComponent
+  ],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    FormsModule,
+    NgxColorsModule,
+    RouterModule,
+  ],
+  exports: [
+    NavbarComponent,
+    AsideNavbarComponent,
+    HomeCardComponent,
+    CustomModalComponent,
+    EmailCollectorComponent,
+    CreateWorkspaceComponent,
+    NgxColorsModule,
+    MobileNavComponent,
+    LoaderComponent,
+  ],
 })
 export class SharedComponentsModule {}

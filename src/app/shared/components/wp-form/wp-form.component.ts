@@ -22,6 +22,7 @@ export class WpFormComponent implements OnInit, OnDestroy {
   ownedWokspaces: any[] = [];
   userId: string;
   email: string;
+  loader:boolean
   storeSubscription: Subscription;
   getAllWorkspaceSubscription: Subscription;
   createWorkspaceSubscription: Subscription;
@@ -123,6 +124,7 @@ export class WpFormComponent implements OnInit, OnDestroy {
   }
 
   createWorkspace(workspaceDetails: { name: string; theme: string }) {
+    this.loader = true
     this.createWorkspaceSubscription = this.wpService
       .createNewWorkspace({
         name: workspaceDetails.name,
@@ -133,6 +135,7 @@ export class WpFormComponent implements OnInit, OnDestroy {
         (data: { msg: string }) => {
           this.toast.customSuccessToast('New workspace created');
           this.loadWorkspace();
+          this.loader = false
         },
         (error) => {
           console.log(error);
@@ -146,11 +149,13 @@ export class WpFormComponent implements OnInit, OnDestroy {
       this.toast.customErrorToast('Please select a workspace');
       return;
     } else {
+      this.loader = true
       this.addMembersSubscription = this.wpService
         .addMembersToWorkspace(emails, this.selectedWorkspace)
         .subscribe(
           (data: { sent: boolean }) => {
             if (data.sent) {
+              this.loader = false
               this.toast.customSuccessToast(
                 'Verification mail has been sent to the emails'
               );
@@ -176,7 +181,7 @@ export class WpFormComponent implements OnInit, OnDestroy {
           this.router.navigate(['/workspace'])
         },
         (error) => {
-          console.log(error);
+          this.toast.customErrorToast(error.error.error.error.msg);
         }
       );
   }

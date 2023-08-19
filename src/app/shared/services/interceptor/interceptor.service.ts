@@ -36,7 +36,6 @@ export class InterceptorService implements HttpInterceptor {
     this.store
       .select((state: any) => state?.userDetailsState)
       .subscribe((data: any) => {
-        console.log(data);
         this.accessToken = data.accessToken;
       });
   }

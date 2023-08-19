@@ -1,0 +1,14 @@
+<div class="text-center font-bold text-xl md:text-3xl dark:text-white">
+  <p class="my-5">{{ heading }}</p>
+</div>
+<div
+  class="max-h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600"
+>
+  <p
+    (click)="emitTaskId(task._id)"
+    *ngFor="let task of tasks"
+    class="font-semibold text-lg md:text-2xl mx-4 mb-2 rounded-xl cursor-pointer bg-gradient-to-r from-green-300 text-gray-7800 to-blue-300 dark:bg-gradient-to-r dark:from-gray-800 dark:to-gray-800  p-2 dark:text-gray-300"
+  >
+    {{task.name}}
+  </p>
+</div>

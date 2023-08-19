@@ -18,6 +18,6 @@
       Project Tasks
     </p>
   </div>
-  <app-project-overview *ngIf="navChoise === 'overview'" [project]="projectDetails"></app-project-overview>
+  <app-project-overview *ngIf="navChoise === 'overview'"  [project]="projectDetails"></app-project-overview>
   <app-tasks *ngIf="navChoise === 'tasks'" [projectId]="projectDetails._id"></app-tasks>
 </div>
