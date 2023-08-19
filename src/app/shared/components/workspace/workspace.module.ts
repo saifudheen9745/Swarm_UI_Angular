@@ -18,6 +18,6 @@ const route:Routes = [{path:'',component:WorkspaceComponent}]
     RouterModule.forChild(route),
     SharedComponentsModule,
     FormsModule
-  ]
+  ],
 })
 export class WorkspaceModule { }

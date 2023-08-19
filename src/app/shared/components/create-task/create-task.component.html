@@ -1,0 +1,187 @@
+<div class="h-96 overflow-y-scroll md:h-full md:overflow-y-hidden">
+  <form [formGroup]="createForm" (ngSubmit)="submitCreateTask(createForm)">
+    <div class="relative z-0 w-full mb-6 group">
+      <input
+        formControlName="name"
+        type="text"
+        name="task_name"
+        id="task_name"
+        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+        placeholder=" "
+        required
+      />
+      <label
+        for="task_name"
+        class="peer-focus:font-medium absolute text-sm text-gray-900 dark:text-gray-100 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        >Task Name</label
+      >
+      <div class="text-red-600">
+        <p
+          *ngIf="
+            createForm.get('name')?.hasError('required') &&
+            createForm.get('name')?.touched
+          "
+        >
+          Project name is required.
+        </p>
+        <p *ngIf="createForm.get('name')?.hasError('noSpaces')">
+          No spaces are allowd
+        </p>
+      </div>
+    </div>
+    <div class="relative z-0 w-full mb-6 group">
+      <label
+        for="message"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Task Description</label
+      >
+      <textarea
+        formControlName="description"
+        id="message"
+        rows="4"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Leave a description..."
+      ></textarea>
+      <div class="text-red-600">
+        <p *ngIf="createForm.get('description')?.hasError('noSpaces')">
+          No spaces are allowed
+        </p>
+        <p *ngIf="createForm.get('description')?.hasError('minlength')">
+          Needed atleast 10 character
+        </p>
+        <p
+          *ngIf="
+            createForm.get('description')?.hasError('required') &&
+            createForm.get('description')?.touched
+          "
+        >
+          Project description is required.
+        </p>
+      </div>
+    </div>
+    <div class="w-full">
+      <label
+        for="default"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Priority</label
+      >
+      <select
+        formControlName="priority"
+        id="default"
+        class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option selected value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+    <div date-rangepicker class="flex flex-col md:flex-row items-center">
+      <div class="relative">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+            />
+          </svg>
+        </div>
+        <input
+          formControlName="from"
+          name="start"
+          type="date"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Select date start"
+        />
+        <div class="text-red-600">
+          <p
+            *ngIf="
+              createForm.get('from')?.hasError('required') &&
+              createForm.get('from')?.touched
+            "
+          >
+            From date is required
+          </p>
+        </div>
+      </div>
+      <span class="text-gray-500">to</span>
+      <div class="relative">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+            />
+          </svg>
+        </div>
+        <input
+          formControlName="to"
+          name="end"
+          type="date"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Select date end"
+        />
+        <div class="text-red-600">
+          <p
+            *ngIf="
+              createForm.get('to')?.hasError('required') &&
+              createForm.get('to')?.touched
+            "
+          >
+            From date is required
+          </p>
+        </div>
+      </div>
+    </div>
+    <p class="dark:text-gray-200 mt-2 text-gray-700 text-lg font-semibold">
+      Select Members
+    </p>
+    <ul
+      *ngIf="projectMembers"
+      class="h-48 mt-2 pt-2 overflow-y-scroll dark:bg-gray-500 scrollbar-hide px-3 pb-3 text-sm text-gray-700 dark:text-gray-200 grid grid-cols-1"
+      aria-labelledby="dropdownSearchButton "
+    >
+      <li class="" *ngFor="let member of projectMembers?.registerdMembers">
+        <input
+          type="checkbox"
+          [id]="member.email"
+          [value]="member._id"
+          class="hidden peer"
+          (click)="selectMember(member._id)"
+          required=""
+        />
+        <label
+          [htmlFor]="member.email"
+          class="break-all inline-flex items-center justify-between w-full p-3 text-gray-500 bg-gray-200 border-2 border-gray-300 cursor-pointer dark:hover:text-gray-200 dark:border-gray-600 peer-checked:border-green-600 hover:text-gray-600 dark:peer-checked:text-green-400 peer-checked:text-gray-900 hover:bg-gray-300 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-900"
+        >
+          <div class="flex justify-center gap-3">
+            <div class="md:text-lg font-semibold">
+              {{ member.email }}
+            </div>
+          </div>
+        </label>
+      </li>
+    </ul>
+    <div class="flex w-full justify-center">
+      <button
+        type="submit"
+        class="text-green-900 sm:w-full md:w-[50%] bg-gradient-to-br from-green-400 to-blue-300 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-xl px-5 py-2.5 text-center mt-2"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+<div class="shadow-lg bg-gray-200 dark:bg-gray-600 max-h-56 scrollbar-thin overflow-y-scroll p-2 md:mt-2 md:rounded-md">
+  <p
+    class="flex justify-start items-center text-lg md:text-2xl gap-2 dark:text-white font-semibold"
+  >
+    <span> 👨🏻 </span>
+    <span>Comments</span>
+  </p>
+
+  <div *ngFor="let comment of allComments" class="px-4  scrollbar-thin">
+    <div class="flex flex-col gap-1">
+      <p class="dark:text-gray-200 font-semibold text-sm md:text-xl my-1">{{comment.creatorName}}</p>
+      <p class="dark:text-gray-200 text-sm md:text-lg my-1">
+        {{comment.comment}}
+      </p>
+      <hr>
+    </div>
+  </div>
+
+  <div class="flex mt-2 flex-col gap-2 md:justify-center z-0 w-full mb-6 group">
+    <form [formGroup]="commentForm" (ngSubmit)="handleAddComment(commentForm)">
+      <textarea
+        formControlName="comment"
+        name="comment"
+        id="comments"
+        rows="4"
+        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Leave a description..."
+      ></textarea>
+      <div>
+        <p
+          *ngIf="commentForm.get('comment')?.hasError('minlength')"
+          class="text-red-700"
+        >
+          Need atlest 10 characters
+        </p>
+        <p
+          *ngIf="commentForm.get('comment')?.hasError('noSpaces')"
+          class="text-red-700"
+        >
+          Spaces are not allowed
+        </p>
+      </div>
+      <button
+        class="block bg-gradient-to-r mt-2 from-yellow-300 to-orange-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center text-gray-900 dark:bg-gradient-to-r dark:from-yellow-300 dark:to-orange-400 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="submit"
+      >
+        Add Comment
+      </button>
+    </form>
+  </div>
+</div>

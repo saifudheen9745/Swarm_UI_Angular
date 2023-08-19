@@ -13,8 +13,6 @@ import {
 } from './shared/ngrx/ngrx.reducers';
 import { InterceptorService } from './shared/services/interceptor/interceptor.service';
 import { NgxColorsModule } from 'ngx-colors';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { SharedComponentsModule } from './shared/components/shared-components.module';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
