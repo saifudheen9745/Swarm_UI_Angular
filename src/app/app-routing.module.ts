@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './shared/guards/auth-guard.service';
+import { IsLoggedInService } from './shared/guards/is-logged-in.service';
 
 const routes: Routes = [
   {
@@ -8,6 +10,7 @@ const routes: Routes = [
       import('./pages/landing-page/landing-page.module').then(
         (m) => m.LandingPageModule
       ),
+    canActivate: [IsLoggedInService],
   },
   {
     path: 'login',
@@ -15,6 +18,7 @@ const routes: Routes = [
       import('./pages/login-page/login-page.module').then(
         (m) => m.LoginPageModule
       ),
+    canActivate: [IsLoggedInService],
   },
   {
     path: 'signup',
@@ -22,6 +26,7 @@ const routes: Routes = [
       import('./pages/signup-page/signup-page.module').then(
         (m) => m.SignupPageModule
       ),
+    canActivate: [IsLoggedInService],
   },
   {
     path: 'verifyMail/:id/:token',
@@ -29,6 +34,7 @@ const routes: Routes = [
       import('./pages/verify-email/verify-email.module').then(
         (m) => m.VerifyEmailModule
       ),
+    canActivate: [IsLoggedInService],
   },
   {
     path: '',
@@ -36,6 +42,7 @@ const routes: Routes = [
       import('./pages/main-page/main-page.module').then(
         (m) => m.MainPageModule
       ),
+    canActivate: [AuthGuardService],
   },
 ];
 
