@@ -52,6 +52,10 @@ const routes: Routes = [
       {
         path:'project/:projectId',
         loadChildren: () => import('../../shared/components/project-task/project-task.module').then(m => m.ProjectTaskModule)
+      },
+      {
+        path:'**',
+        loadChildren:()=> import('../../shared/components/page-not-found/page-not-found.module').then((m)=>m.PageNotFoundModule)
       }
     ],
   },
