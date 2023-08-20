@@ -14,6 +14,8 @@ import {
 import { InterceptorService } from './shared/services/interceptor/interceptor.service';
 import { NgxColorsModule } from 'ngx-colors';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { AuthGuardService } from './shared/guards/auth-guard.service';
+import { IsLoggedInService } from './shared/guards/is-logged-in.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +51,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    AuthGuardService,
+    IsLoggedInService
   ],
 
   bootstrap: [AppComponent],
