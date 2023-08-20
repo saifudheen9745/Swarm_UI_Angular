@@ -23,7 +23,7 @@ import { LoaderComponent } from './loader/loader.component';
     CreateWorkspaceComponent,
     MobileNavComponent,
     LoaderComponent
-  ],
+    ],
   imports: [
     CommonModule,
     FontAwesomeModule,
